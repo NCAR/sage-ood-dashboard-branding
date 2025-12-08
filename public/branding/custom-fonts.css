@@ -1,0 +1,14 @@
+/* public/branding/custom-fonts.css */
+/* Load Poppins from Google Fonts (or we could self-host */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global font override for the entire OOD dashboard (creates var(--ood-font)*/
+:root {
+  --ood-font: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+              "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  font-family: var(--ood-font) !important;
+}
+

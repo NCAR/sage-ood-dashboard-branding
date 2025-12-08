@@ -1,0 +1,14 @@
+/* Add this after main.css to fix Bootstrap, OOD, and NCAR/GDEX classes */
+
+/* make footer nav links match GDEX link color */
+/* Scope Bootstrap nav link colors to the footer only */
+.org-footer {
+  --bs-nav-link-color: #c3d7ee;        /* default link color in footer */
+  --bs-nav-link-hover-color: #00c0d5;  /* hover color in footer */
+
+  /* Sometimes Bootstrap also uses these: */
+  --bs-link-color: #c3d7ee;
+  --bs-link-hover-color: #00c0d5;
+}
+
+

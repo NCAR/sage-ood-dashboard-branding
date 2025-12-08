@@ -1,0 +1,175 @@
+<%# app/views/layouts/_footer.html.erb %>
+<%# Custom NCAR-style footer inspired by gdex.ucar.edu %>
+
+<footer>
+  <div class="org-footer d-print-none">
+    <div class="container-lg">
+      <div class="row">
+
+        <div class="col-12 col-md-5 py-2">
+          <div class="accordion" id="accordionNCAR">
+            <div id="ncarHeader" class="d-flex justify-content-between">
+              <h3 class="text-light pb-mb-2">NCAR</h3>
+              <button class="btn text-light px-2 disabled" href="#ncarCollapseMenu" id="ncarCollapseButton" aria-label="NCAR Organization" role="button" aria-expanded="false" aria-controls="ncarCollapseMenu"></button>
+            </div>
+            <div id="ncarCollapseMenu" aria-labelledby="ncarHeader" data-parent="#accordionNCAR">
+              <ul class="nav flex-column">
+
+                <li class="nav-item "><a class="nav-link" href="https://ncar.ucar.edu/">NSF NCAR Homepage</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www2.acom.ucar.edu/">ACOM | Atmospheric Chemistry Observations &amp; Modeling</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.cgd.ucar.edu/">CGD Laboratory</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www2.cisl.ucar.edu/">CISL | Computational &amp; Information Systems</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://edec.ucar.edu/">EdEC | Education, Engagement &amp; Early-Career Development</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.eol.ucar.edu/">EOL | Earth Observing Laboratory</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www2.hao.ucar.edu/">HAO | High Altitude Observatory</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.mmm.ucar.edu/">MMM | Mesoscale &amp; Microscale Meteorology</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://ral.ucar.edu/">RAL | Research Applications Laboratory</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <%# 2nd Column of 1st section %>
+        <div class="col-12 col-md py-2">
+          <div class="accordion" id="accordionUCAR">
+            <div id="ucarHeader" class="d-flex justify-content-between">
+              <h3 class="text-light pb-mb-2">UCAR</h3>
+              <button class="btn px-2 text-light disabled" href="#ucarCollapseMenu" id="ucarCollapseButton" aria-label="UCAR Organization" role="button" aria-expanded="false" aria-controls="ucarCollapseMenu"></button>
+            </div>
+            <div id="ucarCollapseMenu" aria-labelledby="ucarHeader" data-parent="#accordionUCAR">
+              <ul class="nav flex-column">
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/">UCAR Homepage</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/community-programs">Community Programs</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/what-we-offer/education-training">Education &amp; Training</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://sundog.ucar.edu/">For Staff</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/what-we-do/advocacy/office-government-relations">Government Relations &amp; External Engagement</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/who-we-are/membership">Member Institutions</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/what-we-do/tech-transfer-engagement">Tech Transfer &amp; Engagement</a></li>
+
+                <li class="nav-item "><a class="nav-link" href="https://www.ucar.edu/what-we-do/university-collaboration">University Collaboration</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Column 3 -->
+        <div class="col-12 col-md py-2">
+
+          <!-- Follow Social Media -->
+          <h4>Follow Us On Social Media</h4>
+          <div class="social-icons text-light">
+            <div class="col-md-4">
+              <div class="social">
+                <div class="social-icons text-light">
+                  <a href="https://www.facebook.com/ncar.ucar" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://youtube.com/ncarucar" aria-label="Follow us on YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                  <a href="https://instagram.com/ncar_ucar" aria-label="Follow us on Instagram" title="Instagram"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="https://arc.ucar.edu/docs" target="_blank" rel="noopener">NCAR HPC Documentation</a>
+                <a class="nav-link" href="https://arc.ucar.edu" target="_blank" rel="noopener">NCAR Advanced Research Computing</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-3">
+            <span id="ood_version" class="text-light">OnDemand installed version: <%= Configuration.ood_version %><br><a href="https://openondemand.org/licensing">Software License Notice</a></span>
+          </div>
+        </div> <!-- End 3rd Column -->
+
+    </div>
+    </div> <<!-- End section 1 -->
+
+    <!-- Legal footer section -->
+    <div class="legal-footer py-3">
+      <div class="container-lg">
+        <div class="row">
+          <div class="col-12 d-print-none">
+            <p class="text-light copyright pe-md-2">© 2025 UCAR</p>
+            <ul class="nav flex-column flex-md-row">
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/privacy-notice">Privacy</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/cookie-other-tracking-technologies-notice">Cookies</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/accessibility">Web Accessibility</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/terms-of-use">Terms of Use</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/notification-copyright-infringement-digital-millenium-copyright-act">Copyright Issues</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://nsf.gov">Sponsored by U.S. NSF</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="https://www.ucar.edu/who-we-are/ethics">Report Ethics Concern</a>
+              </li>
+
+            </ul>
+          </div>
+          <div class="col-12 text-gray-light">
+            <span class="d-block d-md-inline pt-2 pt-md-0"><b>Postal Address:</b></span>
+            <span>P.O. Box 3000, Boulder, CO 80307-3000</span>
+            <span class="d-none d-md-inline">•</span>
+            <span class="d-block d-md-inline pt-2 pt-md-0"><b>Shipping Address:</b></span>
+            <span>3090 Center Green Drive, Boulder, CO 80301</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+      <!-- Third section -->
+      <div class="nsf-footer py-3">
+        <div class="container-lg">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-1 pb-3 pb-md-0 me-md-3">
+
+              <picture>
+                <!-- NSF logo asset path available to app -->
+                <img src="branding/nsf-logo.png" alt="NSF Logo" />
+              </picture>
+
+            </div>
+            <div class="col-12 col-md-10 flex-md-grow-1">
+              <p class="mb-0">This material is based upon work supported by the NSF National Center for Atmospheric Research, a major facility sponsored by the U.S. National Science Foundation and managed by the University Corporation for Atmospheric Research. Any opinions, findings and conclusions or recommendations expressed in this material do not necessarily reflect the views of the National Science Foundation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</footer>
