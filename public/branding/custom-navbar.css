@@ -1,0 +1,29 @@
+/* Reset dropdown caret for the main OOD navbar only */
+.navbar .dropdown-toggle::after {
+  /* Bootstrap-like caret triangle */
+  display: inline-block;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid currentColor;
+  border-right: .3em solid transparent;
+  border-left: .3em solid transparent;
+  border-bottom: 0;
+
+  /* Nuke the Font Awesome stuff coming from main.min.css */
+  font-family: inherit !important;
+  font-weight: normal !important;
+  float: none !important;
+}
+
+/* make footer nav links match GDEX link color */
+/* Scope Bootstrap nav link colors to the footer only */
+.nav-link {
+  --bs-nav-link-color: #c3d7ee;        /* default link color */
+  --bs-nav-link-hover-color: #00c0d5;  /* hover color */
+
+  /* Sometimes Bootstrap also uses these: */
+  --bs-link-color: #c3d7ee;
+  --bs-link-hover-color: #00c0d5;
+}
+
