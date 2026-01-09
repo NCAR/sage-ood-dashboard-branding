@@ -1,0 +1,58 @@
+<%# app/views/layouts/_org_header.html.erb %>
+<%# Custom NCAR/GDEX-style org header above the OOD navbar %>
+
+<header class="org-header d-print-none">
+  <div class="container-lg">
+    <div class="row gx-0 py-md-1">
+
+      <!-- Left: NSF + NCAR logos and mobile toggler -->
+      <div class="col col-md-8 py-md-1">
+        <div class="d-flex">
+
+          <!-- NSF logo -->
+          <div class="pe-1 my-1 my-md-0 nsf-logo align-self-center">
+            <a href="https://nsf.gov" title="U.S. NSF Home">
+              <!-- Use a logo you place under public/branding -->
+              <img class="img-fluid"
+                   src="branding/nsf-logo.png"
+                   alt="NSF Logo">
+              <span class="sr-only">NCAR</span>
+            </a>
+          </div>
+
+          <!-- NCAR logo -->
+          <div class="ps-2 my-1 py-md-0 align-self-center ncar-logo">
+            <div class="mb-0 small-ncar-logo">
+              <a href="https://ncar.ucar.edu/">
+                <img class="img-fluid"
+                     src="branding/logo-ncar.png"
+                     alt="NSF NCAR">
+              </a>
+            </div>
+          </div>
+
+        
+          <!-- Mobile menu toggler (you can leave this as a visual-only button) -->
+          <div class="ms-auto px-0 py-md-0 d-md-none justify-content-end mobile-toggler">
+            <button
+              aria-label="Mobile Menu"
+              class="navbar-toggler collapsed btn border-start"
+              type="button">
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: utility links -->
+      <div class="utility-menu col collapse d-none d-md-flex justify-content-end align-items-center pe-0">
+        <div class="px-2">
+          <a href="mailto:datahelp@ucar.edu">Contact Us</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+
