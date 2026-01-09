@@ -1,0 +1,6 @@
+/* Force white background for our custom header only */
+.org-header,
+.org-header * {
+  background-color: #ffffff !important;
+}
+
