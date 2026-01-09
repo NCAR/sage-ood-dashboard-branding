@@ -72,7 +72,9 @@ Links:
 | `app/views/layouts/application.html.erb` | Adds external CSS links to branding assets |
 | `public/branding/main.min.css` | CSS theme copied from GDEX site |
 | `public/branding/custom-fonts.css` | Global Poppins font override |
-| `public/branding/nsf-logo.png` | NSF logo used in footer |
+| `public/branding/custom-footer.css` | Custom footer HTML override |
+| `public/branding/logo-ncar.png` | NSF logo used in header |
+| `public/branding/nsf-logo.png` | NSF logo used in header/footer |
 | `.env.overload` | Create or override known OOD config parameters. This will override any environment variable whether it's set or not. |
 
 All assets are served directly from `/public/branding` and **do not use the Rails asset pipeline**.
