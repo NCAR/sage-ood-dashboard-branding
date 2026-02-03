@@ -14,7 +14,7 @@
             <a href="https://nsf.gov" title="U.S. NSF Home">
               <!-- Use a logo you place under public/branding -->
               <img class="img-fluid"
-                   src="/public/branding/nsf-logo.png"
+                   src="<%= @user_configuration.public_url%>/branding/nsf-logo.png"
                    alt="NSF Logo">
               <span class="sr-only">NCAR</span>
             </a>
@@ -23,15 +23,15 @@
           <!-- NCAR logo -->
           <div class="ps-2 my-1 py-md-0 align-self-center ncar-logo">
             <div class="mb-0 small-ncar-logo">
-              <a href="https://ncar.ucar.edu/">
+              <a href="https://ncar.ucar.edu/" title="NSF NCAR Home">
                 <img class="img-fluid"
-                     src="/public/branding/logo-ncar.png"
+                     src="<%= @user_configuration.public_url%>/branding/logo-ncar.png"
                      alt="NSF NCAR">
               </a>
             </div>
           </div>
 
-        
+
           <!-- Mobile menu toggler (you can leave this as a visual-only button) -->
           <div class="ms-auto px-0 py-md-0 d-md-none justify-content-end mobile-toggler">
             <button
@@ -55,4 +55,3 @@
     </div>
   </div>
 </header>
-

@@ -30,24 +30,12 @@
   <meta name="generator" content="Open OnDemand" />
 
   <%= render partial: 'layouts/config' %>
-
-  <%- # Custom CSS for NCAR/GDEX-like footer and Poppins fonts inclusion %>
-  <link rel="stylesheet" href="branding/main.min.css">
-  <link rel="stylesheet" href="branding/custom-fonts.css">
-  <link rel="stylesheet" href="branding/custom-navbar.css">
-  <link rel="stylesheet" href="branding/custom-footer.css"> 
-  <link rel="stylesheet" href="branding/custom-header.css"> 
-
 </head>
 <body>
   <header>
 
     <%- # Custom NCAR header above navbar %>
     <%= render partial: 'layouts/org_header' %>
-
-    <span class="row">
-      <a href="#main_container" class="skip-link"><%= t('dashboard.skip_navigation') %></a>
-    </span>
 
     <nav class="navbar navbar-expand-md shadow-sm navbar-color navbar-<%= @user_configuration.navbar_type %>">
       <ul class="navbar-nav w-100 align-items-center" role="menubar">
