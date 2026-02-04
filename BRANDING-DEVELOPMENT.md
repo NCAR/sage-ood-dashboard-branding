@@ -27,37 +27,52 @@ Post the execution of the two Ansible tasks mentioned above, a developer should 
 
 (Note: /var/www/ood is the Apache root)
 
-Once a developer is setup as described above, the developer needs to execute the following steps to complete the development dashboard with its NCAR branding:
+Once a developer is setup as described above, the developer needs to execute the steps below to complete the development dashboard with its NCAR branding.
 
-  - mkdir -p ~/ondemand/src ~/ondemand/dev ~/ondemand/ondemand.d
-  - cd ~/ondemand/src
-    - git clone https://github.com/NCAR/sage-ood-dashboard-branding.git
-    - git clone https://github.com/OSC/ondemand.git
-  - cd ~/ondemand/public
-    - ln -s ../src/sage-ood-dashboard-branding/public/branding branding
-  - cd ~/ondemand/dev
-    - ln -s ../src/ondemand/apps/dashboard dashboard
-    - cd dashboard
-      - git checkout v4.0.8 # checkout the tag matching the installation of OOD on the VM!
-      - ./bin/setup # builds the dashboard app
-      - Create file .env.local with the following content:
+Run the commands...
+
+```bash
+mkdir -p ~/ondemand/src ~/ondemand/dev ~/ondemand/ondemand.d
+cd ~/ondemand/src
+git clone https://github.com/NCAR/sage-ood-dashboard-branding.git
+git clone https://github.com/OSC/ondemand.git
+cd ~/ondemand/public
+ln -s ../src/sage-ood-dashboard-branding/public/branding branding
+cd ~/ondemand/dev
+ln -s ../src/ondemand/apps/dashboard dashboard
+cd dashboard
+git checkout v4.0.8 # checkout the tag matching the installation of OOD on the VM!
+./bin/setup # builds the dashboard app
 ```
+
+In ~/ondemand/dev/dashboard, create file .env.local with the following content:
+
+```bash
 OOD_LOAD_EXTERNAL_CONFIG=1
 OOD_CONFIG_D_DIRECTORY="/glade/u/home/jcunning/ondemand/dev/dashboard/config/ondemand.d" # OOD bug with tilde processing present on this setting!!
 OOD_APP_CONFIG_ROOT="/glade/u/home/jcunning/ondemand/src/sage-ood-dashboard-branding/apps/dashboard" # OOD bug with tilde processing absent here
 ```
-      - Create file .env.overload with the following content:
-```
+
+In ~/ondemand/dev/dashboard, create file .env.overload with the following content:
+
+```bash
 OOD_DASHBOARD_TITLE="NSF NCAR HPC OnDemand"
 OOD_DASHBOARD_LOGO="/public/dev/jcunning/branding/NSF-NCAR_Logo_FullColor_RGB.png"
 OOD_DASHBOARD_LOGO_HEIGHT="200"
 OOD_BRAND_BG_COLOR: "#0057C2"
 OOD_BRAND_LINK_ACTIVE_BG_COLOR: "#00357A"
 ```
-  - cd ~/ondemand/ondemand.d
-    - cp /etc/ood/config/ondemand.d/ondemand.yml . # note this is the installation's ondemand.yml being copied
-    - Edit the copy of ondemand.yml and add or update public_url to the following:
+
+Run the commands...
+
+```bash
+cd ~/ondemand/ondemand.d
+cp /etc/ood/config/ondemand.d/ondemand.yml . # note this is the installation's ondemand.yml being copied
 ```
+
+Edit the copy of ondemand.yml and add or update public_url to be the following:
+
+```yaml
 public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
 ```
 
