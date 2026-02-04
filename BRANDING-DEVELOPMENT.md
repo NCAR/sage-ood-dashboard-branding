@@ -10,7 +10,11 @@ We can, through configuration settings and environment variables, fully "insulat
 
 To develop customized views and layouts (the dynamic Ruby templates or .erb files), we can use the environmental variables OOD_LOAD_EXTERNAL_CONFIG and OOD_APP_CONFIG_ROOT to fully relocate the directory from which these files are read. Lastly, environmental variable OOD_CONFIG_D_DIRECTORY allows us to relocate the directory where top level yaml configuration files reside. Crucially, variable public_url is set in these files--typically however there is just one file called ondemand.yml 
 
-HSG Admins assist us setting up OOD for dashboard development (really for the development of any "sandbox" interactive application we want to play with). They install OOD with Ansible--a tool that provisions virtual machines based on a repository describing the installation's configuration. One of the tasks Ansible performs when installing the prototype instance of OOD is enabling "development mode" for specific users with unix accounts on the prototype machine. Development mode allows such users to deploy interactive applications beyond what is available with the system installation of OOD for the purposes of developing them. These development versions of interactive applications are available in what is called the "sandbox". See the "My Sandbox Apps" menu entry to access them. For our purposes here, the dashboard itself is one of these interactive applications. A second Ansible task prepares developers so that they may update and test new NCAR branding onboard their development dashboards; specifically, it creates the filesystem structure (read, directories and symlinks) that match the value that the variable public_url will have for the developer. See https://osc.github.io/ood-documentation/latest/how-tos/app-development/enabling-development-mode.html
+HSG Admins assist us setting up OOD for dashboard development (really for the development of any "sandbox" interactive application we want to play with). They install OOD with Ansible--a tool that provisions virtual machines based on a repository describing the installation's configuration. One of the tasks Ansible performs when installing the prototype instance of OOD is enabling "development mode" for specific users with unix accounts on the prototype machine. Development mode allows such users to deploy interactive applications beyond what is available with the system installation of OOD for the purposes of developing and testing them. These development versions of interactive applications are available in what is called the "sandbox". See the "My Sandbox Apps" menu entry to access them. For our purposes here, the dashboard itself is one of these interactive applications.
+
+See https://osc.github.io/ood-documentation/latest/how-tos/app-development/enabling-development-mode.html
+
+A second Ansible task prepares developers so that they may update and test new NCAR branding onboard their development dashboards; specifically, it creates the filesystem structure (read, directories and symlinks) that match the value that the variable public_url will have for the developer.
 
 ## Steps to Create the Development Dashboard
 
@@ -37,19 +41,25 @@ Once a developer is setup as described above, the developer needs to execute the
       - git checkout v4.0.8 # checkout the tag matching the installation of OOD on the VM!
       - ./bin/setup # builds the dashboard app
       - Create file .env.local with the following content:
-        OOD_LOAD_EXTERNAL_CONFIG=1
-        OOD_CONFIG_D_DIRECTORY="/glade/u/home/jcunning/ondemand/dev/dashboard/config/ondemand.d" # OOD bug with tilde processing present on this setting!!
-        OOD_APP_CONFIG_ROOT="/glade/u/home/jcunning/ondemand/src/sage-ood-dashboard-branding/apps/dashboard" # OOD bug with tilde processing absent here
+```
+OOD_LOAD_EXTERNAL_CONFIG=1
+OOD_CONFIG_D_DIRECTORY="/glade/u/home/jcunning/ondemand/dev/dashboard/config/ondemand.d" # OOD bug with tilde processing present on this setting!!
+OOD_APP_CONFIG_ROOT="/glade/u/home/jcunning/ondemand/src/sage-ood-dashboard-branding/apps/dashboard" # OOD bug with tilde processing absent here
+```
       - Create file .env.overload with the following content:
-        OOD_DASHBOARD_TITLE="NSF NCAR HPC OnDemand"
-        OOD_DASHBOARD_LOGO="/public/dev/jcunning/branding/NSF-NCAR_Logo_FullColor_RGB.png"
-        OOD_DASHBOARD_LOGO_HEIGHT="200"
-        OOD_BRAND_BG_COLOR: "#0057C2"
-        OOD_BRAND_LINK_ACTIVE_BG_COLOR: "#00357A"
+```
+OOD_DASHBOARD_TITLE="NSF NCAR HPC OnDemand"
+OOD_DASHBOARD_LOGO="/public/dev/jcunning/branding/NSF-NCAR_Logo_FullColor_RGB.png"
+OOD_DASHBOARD_LOGO_HEIGHT="200"
+OOD_BRAND_BG_COLOR: "#0057C2"
+OOD_BRAND_LINK_ACTIVE_BG_COLOR: "#00357A"
+```
   - cd ~/ondemand/ondemand.d
     - cp /etc/ood/config/ondemand.d/ondemand.yml . # note this is the installation's ondemand.yml being copied
     - Edit the copy of ondemand.yml and add or update public_url to the following:
-      public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
+```
+public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
+```
 
 Important, the environment variables in the file .env.overload above override the equivalent settings in the file /etc/ood/config/nginx_stage.yml, which is a high level configuration file for configuring the Per User Nginx server. These environment variables are usable by any interactive application not just the dashboard. And, except for the OOD_DASHBOARD_LOGO, changes to the variables used above have to be communicated specifically by value to the HSG admins as they are not captured in the sage-ood-dashboard-branding repository.
 
