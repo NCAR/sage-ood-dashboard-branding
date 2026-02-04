@@ -1,6 +1,6 @@
 # OOD Dashboard Branding
 
-This repository contains **branding overrides for the Open OnDemand (OOD) Dashboard**. All customization is done **without modifying the core OOD codebase**. Customizations are applied using supported development configuration and variables.
+This repository contains **branding overrides for the Open OnDemand (OOD) Dashboard**. All customization is done **without modifying the core OOD codebase**. Customizations are applied using supported configuration and variables.
 
 This keeps the branding:
 
