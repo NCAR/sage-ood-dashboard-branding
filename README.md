@@ -1,45 +1,39 @@
 # OOD Dashboard Branding
 
-This repository contains **branding overrides for the Open OnDemand (OOD) Dashboard**.
-All customization is done **without modifying the core OOD codebase**.  
-Customizations are applied using supported development configuration and variables.
+This repository contains **branding overrides for the Open OnDemand (OOD) Dashboard**. All customization is done **without modifying the core OOD codebase**. Customizations are applied using supported development configuration and variables.
 
 This keeps the branding:
 
-- Safe for OOD upgrades  
-- Isolated from upstream source code  
-- Easy to deploy to dev and production  
+  - Safe for OOD upgrades  
+  - Isolated from upstream source code  
+  - Easy to deploy to dev and production  
 
 ---
 
 ## What Is Customized
 
-Styled to visually match:
-  - https://gdex.ucar.edu
-  - https://scied.ucar.edu
+Styled to visually match https://gdex.ucar.edu and https://scied.ucar.edu:
 
-Links:
-   - Links use brand blueish grey color: `#c3d7ee` rgb(195, 215, 238)`
-   - Custom teal hover highlight: `#00c1d5 rgb(0, 193, 213)`
-  
-- Header title text
-- Navbar styling
-- Footer layout and content
-- Fonts (Poppins)
-- Link colors and hover styles
-- Background colors
-- Custom images (NSF and NCAR logos)
+  - Links use brand blueish grey color: `#c3d7ee` rgb(195, 215, 238)`
+  - Custom teal hover highlight: `#00c1d5 rgb(0, 193, 213)`
+  - Header title text
+  - Navbar styling
+  - Footer layout and content
+  - Fonts (Poppins)
+  - Link colors and hover styles
+  - Background colors
+  - Custom images (NSF and NCAR logos)
 
 ### Header
+
 - Add a custom NSF NCAR header above the nav bar containing NSF and NCAR logos with links.
 
 ### Footer
+
 - Replaces the default OOD footer with a **GDEX-style three-section layout**:
   - Organization & navigation section
   - Legal/postal band
   - White NSF logo band
-
-
 - Includes social media icons with generic NCAR resolutions
 
 ---
@@ -53,7 +47,6 @@ Links:
   - Navigation menus
   - Modals
   - Buttons and inputs
-
 - Uses Google Fonts via external CSS  
 - No inline styles
 
