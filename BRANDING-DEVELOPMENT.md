@@ -20,6 +20,8 @@ A second Ansible task prepares developers so that they may update and test new N
 
 Additional steps below must be taken by the developer to create the development or "sandbox" dashboard. Follow the steps in the example below to complete the creation of a development dashboard. The example uses username jcunning--change to your username where found.
 
+Make sure to login to the Prototype OOD VM to perform the steps below and not a login node, for instance, even though they share the same home directory filesystem, because the Ruby environment may be different between them. The Ruby environment of the Prototype OOD VM is required specifically for building the dashboard interactive app. The "Launch Shell" on the My Sandbox Apps page **should** open a browser terminal to the Prototype OOD VM. 
+
 Post the execution of the two Ansible tasks mentioned above, a developer should see the following on the Prototype OOD VM:
 
   - The symlink /var/www/ood/apps/dev/jcunning/gateway pointing to ~jcunning/ondemand/dev
@@ -49,7 +51,7 @@ In ~/ondemand/dev/dashboard, create file .env.local with the following content:
 
 ```bash
 OOD_LOAD_EXTERNAL_CONFIG=1
-OOD_CONFIG_D_DIRECTORY="/glade/u/home/jcunning/ondemand/dev/dashboard/config/ondemand.d" # OOD bug with tilde processing present on this setting!!
+OOD_CONFIG_D_DIRECTORY="/glade/u/home/jcunning/ondemand/ondemand.d" # OOD bug with tilde processing present on this setting!!
 OOD_APP_CONFIG_ROOT="/glade/u/home/jcunning/ondemand/src/sage-ood-dashboard-branding/apps/dashboard" # OOD bug with tilde processing absent here
 ```
 
@@ -67,16 +69,16 @@ Run the commands...
 
 ```bash
 cd ~/ondemand/ondemand.d
-cp /etc/ood/config/ondemand.d/ondemand.yml . # note this is the installation's ondemand.yml being copied
+cp /etc/ood/config/ondemand.d/*.* . # note, these are the installation's ondemand.d configuration files being copied!
 ```
 
-Edit the copy of ondemand.yml and add or update public_url to be the following:
+In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all configuraiton files are read from this directory for the settings written in them. Then, create the file public_url.yml and add setting public_url to be the following:
 
 ```yaml
 public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
 ```
 
-Important, the environment variables in the file .env.overload above override the equivalent settings in the file /etc/ood/config/nginx_stage.yml, which is a high level configuration file for configuring the Per User Nginx server. These environment variables are usable by any interactive application not just the dashboard. And, except for the OOD_DASHBOARD_LOGO, changes to the variables used above have to be communicated specifically by value to the HSG admins as they are not captured in the sage-ood-dashboard-branding repository.
+Important, the environment variables in the file .env.overload above override the equivalent settings in the file /etc/ood/config/nginx_stage.yml, which is a high level configuration file for configuring the Per User Nginx server. These environment variables are usable by any interactive application not just the dashboard. And, except for the OOD_DASHBOARD_LOGO, changes to the variables used in .env.overload have to be communicated specifically by value to the HSG admins as they are not captured in the sage-ood-dashboard-branding repository.
 
 Note, the above is an ever so slightly modified set of instructions for setting up a development dashboard from the original OOD instructions. See https://osc.github.io/ood-documentation/latest/tutorials/tutorials-dashboard-apps.html
 
