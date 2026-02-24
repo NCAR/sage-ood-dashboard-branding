@@ -31,10 +31,16 @@ Post the execution of the two Ansible tasks mentioned above, a developer should 
 
 Once a developer is setup as described above, the developer needs to execute the steps below to complete the development dashboard with its NCAR branding.
 
-Run the commands...
+Start clean (caution, note the deletion here of files!!) by running the commands...
 
 ```bash
-mkdir -p ~/ondemand/src ~/ondemand/dev ~/ondemand/ondemand.d
+rm -rf ~/ondemand/dev ~/ondemand/public ~/ondemand/ondemand.d ~/ondemand/src
+mkdir -p ~/ondemand/dev ~/ondemand/public ~/ondemand/ondemand.d ~/ondemand/src
+```
+
+Then run the commands...
+
+```bash
 cd ~/ondemand/src
 git clone https://github.com/NCAR/sage-ood-dashboard-branding.git
 git clone https://github.com/OSC/ondemand.git
