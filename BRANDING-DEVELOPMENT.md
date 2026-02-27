@@ -20,7 +20,7 @@ A second Ansible task prepares developers so that they may update and test new N
 
 Additional steps below must be taken by the developer to create the development or "sandbox" dashboard. Follow the steps in the example below to complete the creation of a development dashboard. The example uses username jcunning--change to your username where found.
 
-Make sure to login to the Prototype OOD VM to perform the steps below and not a login node, for instance, even though they share the same home directory filesystem, because the Ruby environment may be different between them. The Ruby environment of the Prototype OOD VM is required specifically for building the dashboard interactive app. The "Launch Shell" on the My Sandbox Apps page **should** open a browser terminal to the Prototype OOD VM. 
+Make sure to login to the Prototype OOD VM to perform the steps below and not a login node, for instance. Even though both share the same home directory filesystem, the Ruby environment may be different between them. The Ruby environment of the Prototype OOD VM is required specifically for building the dashboard interactive app. The "Launch Shell" on the My Sandbox Apps page **should** open a browser terminal to the Prototype OOD VM.
 
 Post the execution of the two Ansible tasks mentioned above, a developer should see the following on the Prototype OOD VM:
 
@@ -78,7 +78,7 @@ cd ~/ondemand/ondemand.d
 cp /etc/ood/config/ondemand.d/*.* . # note, these are the installation's ondemand.d configuration files being copied!
 ```
 
-In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all configuraiton files are read from this directory for the settings written in them. Then, create the file public_url.yml and add setting public_url to be the following:
+In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files or is set to "/public" which is the default; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all yaml configuration files are read in this directory. Then, create the file public_url.yml and add setting public_url to be the following:
 
 ```yaml
 public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
@@ -92,4 +92,4 @@ The development dashboard should now be available in the "My Sandbox Apps" with 
 
 ## Tagging for Release
 
-The sage-ood-dashboard-branding repository is consumed by Ansible when OOD is installed both on the prototype and production VMs. The Ansible task clones the sage-ood-dashboard-branding repository on the target VM and checks out the appropriate commit by a configured tag. The tag format is prefixed by the corresponding production release tag of the ondemand installation and is completed by a version stamp of the branding (ex. v4.0.8_1.0.0). When ready to release updated branding, tag sage-ood-dashboard-branding accordingly with a new tag in this format.
+The sage-ood-dashboard-branding repository is consumed by Ansible when OOD is installed both on the prototype and production VMs. The Ansible task clones the sage-ood-dashboard-branding repository on the target VM and checks out the appropriate commit by a configured tag. The tag format has a prefix of the corresponding production release tag of the ondemand installation and is completed by a version stamp of the branding (ex. v4.0.8_1.0.0). When ready to release updated branding, tag sage-ood-dashboard-branding accordingly with a new tag in this format.
