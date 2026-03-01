@@ -4,27 +4,29 @@
 
 /* Koru-style footer: minimal CSS (colors + link behavior) */
 
-.koru-footer-top {
+.ncar-footer-top {
   background: rgb(1, 24, 55); /* your required top band */
 }
 
-.koru-footer-bottom {
+.ncar-footer-bottom {
   background: rgb(85, 99, 121); /* your required bottom band */
 }
 
 /* Links: inherit base color, only change on hover (no underline by default) */
-.koru-footer-link {
+.ncar-footer-link {
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
+  white-space: nowrap;
 }
-.koru-footer-link:hover,
-.koru-footer-link:focus {
+
+.ncar-footer-link:hover,
+.ncar-footer-link:focus {
   color: rgb(0, 193, 213); /* hover highlight */
   text-decoration: none;
 }
 
 /* Logo sizing */
-.koru-footer-logo {
+.ncar-footer-logo {
   max-height: 46px;
   width: auto;
 }

@@ -3,15 +3,15 @@
 
 <%# app/views/layouts/_footer.html.erb %>
 
-<footer role="contentinfo" class="mt-auto">
+<footer role="contentinfo" class="mt-auto ncar-footer">
 
   <!-- Top dark bar -->
-  <div class="bg-dark text-white py-3">
-    <div class="container">
+  <div class="ncar-footer-top py-3">
+    <div class="container-lg">
 
         <!-- Links: stacked on mobile, inline on md+ -->
-        <ul class="list-unstyled mb-0 d-flex flex-column flex-md-row justify-content-center flex-wrap gap-2 gap-md-3">
-          <li class="small">© UCAR</li>
+        <ul class="list-unstyled mb-0 d-flex flex-column flex-md-row justify-content-center flex-wrap gap-2 gap-md-4 small">
+          <li class="text-white">© UCAR  <%= Time.current.year %> </li>
           <li><a class="link-light text-decoration-none" href="https://www.ucar.edu/web-accessibility">Web Accessibility</a></li>
           <li><a class="link-light text-decoration-none" href="https://www.ucar.edu/cookie-other-tracking-technologies-notice">Cookies</a></li>
           <li><a class="link-light text-decoration-none" href="https://www.ucar.edu/notification-copyright-infringement-digital-millenium-copyright-act">Copyright Issues</a></li>
@@ -25,7 +25,7 @@
   </div>
 
   <!-- Bottom sponsor block -->
-  <div class="footer-sponsor koru-footer-bottom py-4 text-white">
+  <div class="footer-sponsor ncar-footer-bottom py-4 text-white">
     <div class="container">
       <div class="row align-items-start g-3">
         <div class="col-4 col-sm-3 col-md-2 col-lg-1">
