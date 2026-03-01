@@ -1,14 +1,30 @@
-/* Add this after main.css to fix Bootstrap, OOD, and NCAR/GDEX classes */
+/* footer css. Add this after main.css to fix Bootstrap, OOD, and NCAR/GDEX classes */
 
-/* make footer nav links match GDEX link color */
-/* Scope Bootstrap nav link colors to the footer only */
-.org-footer {
-  --bs-nav-link-color: #c3d7ee;        /* default link color in footer */
-  --bs-nav-link-hover-color: #00c0d5;  /* hover color in footer */
+/* Koru-like footer bands (minimal CSS, Bootstrap does most layout) */
 
-  /* Sometimes Bootstrap also uses these: */
-  --bs-link-color: #c3d7ee;
-  --bs-link-hover-color: #00c0d5;
+/* Koru-style footer: minimal CSS (colors + link behavior) */
+
+.koru-footer-top {
+  background: rgb(1, 24, 55); /* your required top band */
 }
 
+.koru-footer-bottom {
+  background: rgb(85, 99, 121); /* your required bottom band */
+}
 
+/* Links: inherit base color, only change on hover (no underline by default) */
+.koru-footer-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+.koru-footer-link:hover,
+.koru-footer-link:focus {
+  color: rgb(0, 193, 213); /* hover highlight */
+  text-decoration: none;
+}
+
+/* Logo sizing */
+.koru-footer-logo {
+  max-height: 46px;
+  width: auto;
+}
