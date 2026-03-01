@@ -1,0 +1,14 @@
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.old
+
+# Vim temp files
+.*.swp
+
+# Logs
+*.log
