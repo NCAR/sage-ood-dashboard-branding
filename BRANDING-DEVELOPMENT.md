@@ -6,7 +6,11 @@ Static assets (css, images) are accessible from the Apache public assets folder:
 
 Customized views and layouts in the form of dynamic Ruby templates, like our NCAR header and footer, live under the top level OOD configuration directory /etc/ood/config, specifically here: /etc/ood/config/apps/dashboard. A development dashboard may use a different application configuration directory via environment variable configuration to identify where these customizations reside.
 
-We can, through configuration settings and environment variables, fully "insulate" dashboard development from the system dashboard. By setting the variable public_url (which is really a directory postfix to the Apache root /var/www/ood) to a subdirectory belonging to an individual developer, we can reference the developer's static assets and not the production static assets. This variable is used automatically by OOD to locate custom css files. We can use it when coding .erb files as well when we need to specify images (NCAR logos). For example within an .erb file specify: src="<%= @user_configuration.public_url%>/logo-ncar.png": Note, however, such references using public_url remain relative to the Apache root.
+We can, through configuration settings and environment variables, fully "insulate" dashboard development from the system dashboard. By setting the variable public_url (which is really a directory postfix to the Apache root /var/www/ood) to a subdirectory belonging to an individual developer, we can reference the developer's static assets and not the production static assets. This variable is used automatically by OOD to locate custom css files. We can use it when coding .erb files as well when we need to specify images (NCAR logos). For example within an .erb file specify: 
+
+src="<%= @user_configuration.public_url%>/branding/logo-ncar.png": 
+
+Note, however, such references using public_url remain relative to the Apache root.
 
 To develop customized views and layouts (the dynamic Ruby templates or .erb files), we can use the environmental variables OOD_LOAD_EXTERNAL_CONFIG and OOD_APP_CONFIG_ROOT to fully relocate the directory from which these files are read. Lastly, environmental variable OOD_CONFIG_D_DIRECTORY allows us to relocate the directory where top level yaml configuration files reside. Crucially, variable public_url is set in these files--typically however there is just one file called ondemand.yml 
 
@@ -65,10 +69,8 @@ In ~/ondemand/dev/dashboard, create file .env.overload with the following conten
 
 ```bash
 OOD_DASHBOARD_TITLE="NSF NCAR HPC OnDemand"
-OOD_DASHBOARD_LOGO="/public/dev/jcunning/branding/NSF-NCAR_Logo_FullColor_RGB.png"
-OOD_DASHBOARD_LOGO_HEIGHT="200"
-OOD_BRAND_BG_COLOR: "#0057C2"
-OOD_BRAND_LINK_ACTIVE_BG_COLOR: "#00357A"
+OOD_BRAND_BG_COLOR="#00357a"
+OOD_NAVBAR_TYPE="dark"
 ```
 
 Run the commands...
@@ -78,10 +80,19 @@ cd ~/ondemand/ondemand.d
 cp /etc/ood/config/ondemand.d/*.* . # note, these are the installation's ondemand.d configuration files being copied!
 ```
 
-In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files or is set to "/public" which is the default; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all yaml configuration files are read in this directory. Then, create the file public_url.yml and add setting public_url to be the following:
+In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files or is set to "/public" which is the default; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all yaml configuration files are read in this directory. 
+
+Then, create the file public_url.yml and add setting public_url to be the following:
 
 ```yaml
 public_url: "/public/dev/jcunning" # note the lack of a trailing slash here--this has implications when using public_url in .erb files
+```
+
+custom_branding.yml
+
+```yaml
+custom_css_files:
+  - /branding/ncar-branding.css
 ```
 
 Important, the environment variables in the file .env.overload above override the equivalent settings in the file /etc/ood/config/nginx_stage.yml, which is a high level configuration file for configuring the Per User Nginx server. These environment variables are usable by any interactive application not just the dashboard. And, except for the OOD_DASHBOARD_LOGO, changes to the variables used in .env.overload have to be communicated specifically by value to the HSG admins as they are not captured in the sage-ood-dashboard-branding repository.
