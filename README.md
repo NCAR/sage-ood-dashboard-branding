@@ -12,43 +12,14 @@ This keeps the branding:
 
 ## What Is Customized
 
-Styled to visually match https://gdex.ucar.edu and https://scied.ucar.edu:
+Styled to visually match [https://gdex.ucar.edu](https://ncar.ucar.edu/) and [https://scied.ucar.edu](https://ncar.github.io/koru-jekyll-template/):
 
-  - Links use brand blueish grey color: `#c3d7ee` rgb(195, 215, 238)`
-  - Custom teal hover highlight: `#00c1d5 rgb(0, 193, 213)`
-  - Header title text
-  - Navbar styling
-  - Footer layout and content
-  - Fonts (Poppins)
-  - Link colors and hover styles
-  - Background colors
+  - Fonts (Poppins) applied globally
+  - Added NSF NCAR header above navbar
+  - Add branding label (NSF NCAR HPC OnDemand) to navbar.
+  - Style navbar (background color)
+  - 2-layer footer with custom content and styling
   - Custom images (NSF and NCAR logos)
-
-### Header
-
-- Add a custom NSF NCAR header above the nav bar containing NSF and NCAR logos with links.
-
-### Footer
-
-- Replaces the default OOD footer with a **GDEX-style three-section layout**:
-  - Organization & navigation section
-  - Legal/postal band
-  - White NSF logo band
-- Includes social media icons with generic NCAR resolutions
-
----
-
-### Fonts
-
-- Overrides all Dashboard fonts to use **Poppins**
-- Applied globally:
-  - Body text
-  - Headings
-  - Navigation menus
-  - Modals
-  - Buttons and inputs
-- Uses Google Fonts via external CSS  
-- No inline styles
 
 ---
 
@@ -63,15 +34,26 @@ Styled to visually match https://gdex.ucar.edu and https://scied.ucar.edu:
 
 | File | Purpose |
 |------|---------|
-| `public/branding/custom-fonts.css` | Global Poppins font override |
-| `public/branding/custom-footer.css` | Custom footer override |
-| `public/branding/custom-header.css` | Custom header override |
-| `public/branding/custom-navbar.css` | Custom navbar override |
-| `public/branding/main.min.css` | CSS theme copied from GDEX site |
-| `public/branding/logo-ncar.png` | NSF logo used in header |
+| `public/branding/ncar-branding.css` | NCAR-specific styles based on Koru theme |
+| `public/branding/logo-ncar.png` | NSF NCAR logo used in header |
 | `public/branding/nsf-logo.png` | NSF logo used in header/footer |
-| `public/branding/NSF-NCAR_Logo_FullColor_RGB.png` | NSF logo used on main pane |
 | `apps/dashboard/views/layouts/_footer.html.erb` | Custom dashboard footer override |
-| `apps/dashboard/views/layouts/_org_header.html.erb` | Custom dashboard header override |
-| `apps/dashboard/views/layouts/application.html.erb` | ? |
-| `apps/dashboard/views/layouts/nav/_logo.html.erb` | ? |
+| `apps/dashboard/views/layouts/_org_header.html.erb` | Custom dashboard header addition |
+| `apps/dashboard/views/layouts/application.html.erb` | Main OOD Ruby file edited to add header and footer |
+
+## Config Files
+
+Part of the theming is done via Open OnDemand config hooks that allow use of configuration rather than code for a limited number of features.
+See BRANDING-DEVELOPMENT.md for more details.
+
+~/ondemand/dev/dashboard/.env.local
+
+~/ondemand/dev/dashboard/.env.overload
+
+~/ondemand/ondemand.d/custom_branding.yml
+
+~/ondemand/ondemand.d/public_url.yml
+
+## Dev Process
+Make all custom code changes in ~/ondemand/src/sage-ood-dashboard-branding on the On Demand server and check in manually using command line git.
+
