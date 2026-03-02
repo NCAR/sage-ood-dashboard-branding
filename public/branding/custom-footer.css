@@ -1,11 +1,9 @@
-/* footer css. Add this after main.css to fix Bootstrap, OOD, and NCAR/GDEX classes */
-
-/* Koru-like footer bands (minimal CSS, Bootstrap does most layout) */
+/* footer css. */
 
 /* Koru-style footer: minimal CSS (colors + link behavior) */
 
 .ncar-footer-top {
-  background: rgb(1, 24, 55); /* your required top band */
+  background-color: rgb(1, 24, 55) 
 }
 
 .ncar-footer-bottom {
@@ -27,6 +25,13 @@
 
 /* Logo sizing */
 .ncar-footer-logo {
-  max-height: 46px;
+  display: block;
+  height: auto;
+  max-height: 72px;
   width: auto;
+  max-width: 72px;
+}
+
+.bg-blue {
+    background-color: #00357a
 }
