@@ -12,7 +12,7 @@ This keeps the branding:
 
 ## What Is Customized
 
-Styled to visually match [https://gdex.ucar.edu](https://ncar.ucar.edu/) and [https://scied.ucar.edu](https://ncar.github.io/koru-jekyll-template/):
+Styled to visually match [https://ncar.ucar.edu](https://ncar.ucar.edu/) and [NCAR Koru theme](https://ncar.github.io/koru-jekyll-template/):
 
   - Fonts (Poppins) applied globally
   - Added NSF NCAR header above navbar
