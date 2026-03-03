@@ -1,39 +1,19 @@
-## Dashboard Branding Notes and Instructions
-
-These are notes and instructions for developing the Open OnDemand (OOD) dashboard with NCAR branding. There are two "classes" of files involved in the NCAR branding: static assets and dynamic Ruby templates. While the Ruby templates reference the static assets, the two classes of files are handled and configured very differently. 
-
-Static assets (css, images) are accessible from the Apache public assets folder: /var/www/ood/public by default. While the public subdirectory is configurable, the Apache root /var/www/ood is not. Static assets are served relative to the Apache root regardless of whether the dashboard is the system dashboard or a development dashboard within a developer's "sandbox". The Apache root is fixed at install. The development dashboard may use different static assets but they still are expressed relative to the Apache root.
-
-Customized views and layouts in the form of dynamic Ruby templates, like our NCAR header and footer, live under the top level OOD configuration directory /etc/ood/config, specifically here: /etc/ood/config/apps/dashboard. A development dashboard may use a different application configuration directory via environment variable configuration to identify where these customizations reside.
-
-We can, through configuration settings and environment variables, fully "insulate" dashboard development from the system dashboard. By setting the variable public_url (which is really a directory postfix to the Apache root /var/www/ood) to a subdirectory belonging to an individual developer, we can reference the developer's static assets and not the production static assets. This variable is used automatically by OOD to locate custom css files. We can use it when coding .erb files as well when we need to specify images (NCAR logos). For example within an .erb file specify: 
-
-src="<%= @user_configuration.public_url%>/branding/logo-ncar.png": 
-
-Note, however, such references using public_url remain relative to the Apache root.
-
-To develop customized views and layouts (the dynamic Ruby templates or .erb files), we can use the environmental variables OOD_LOAD_EXTERNAL_CONFIG and OOD_APP_CONFIG_ROOT to fully relocate the directory from which these files are read. Lastly, environmental variable OOD_CONFIG_D_DIRECTORY allows us to relocate the directory where top level yaml configuration files reside. Crucially, variable public_url is set in these files--typically however there is just one file called ondemand.yml 
-
-HSG Admins assist us setting up OOD for dashboard development (really for the development of any "sandbox" interactive application we want to play with). They install OOD with Ansible--a tool that provisions virtual machines based on a repository describing the installation's configuration. One of the tasks Ansible performs when installing the prototype instance of OOD is enabling "development mode" for specific users with unix accounts on the prototype machine. Development mode allows such users to deploy interactive applications beyond what is available with the system installation of OOD for the purposes of developing and testing them. These development versions of interactive applications are available in what is called the "sandbox". See the "My Sandbox Apps" menu entry to access them. For our purposes here, the dashboard itself is one of these interactive applications.
-
-See https://osc.github.io/ood-documentation/latest/how-tos/app-development/enabling-development-mode.html
-
-A second Ansible task prepares developers so that they may update and test new NCAR branding onboard their development dashboards; specifically, it creates the filesystem structure (read, directories and symlinks) that match the value that the variable public_url will have for the developer.
-
 ## Steps to Create the Development Dashboard
 
-Additional steps below must be taken by the developer to create the development or "sandbox" dashboard. Follow the steps in the example below to complete the creation of a development dashboard. The example uses username jcunning--change to your username where found.
+These are instructions for modifying the Open OnDemand (OOD) dashboard to include NCAR branding. The steps described set up the OOD dashboard in a developer's "sandbox", which is an OOD feature that allows interactive applications, like the dashboard, to be developed in a running instance of OOD.
+
+Follow the steps in the example below to create the development or "sandbox" dashboard. The example uses username jcunning--change to your username where found.
 
 Make sure to login to the Prototype OOD VM to perform the steps below and not a login node, for instance. Even though both share the same home directory filesystem, the Ruby environment may be different between them. The Ruby environment of the Prototype OOD VM is required specifically for building the dashboard interactive app. The "Launch Shell" on the My Sandbox Apps page **should** open a browser terminal to the Prototype OOD VM.
 
-Post the execution of the two Ansible tasks mentioned above, a developer should see the following on the Prototype OOD VM:
+Verify the following two links exist on the Prototype OOD VM. The HSG admins create this pair of symlinks for each developer:
 
   - The symlink /var/www/ood/apps/dev/jcunning/gateway pointing to ~jcunning/ondemand/dev
   - The symlink /var/www/ood/public/dev/jcunning pointing to ~jcunning/ondemand/public
 
 (Note: /var/www/ood is the Apache root)
 
-Once a developer is setup as described above, the developer needs to execute the steps below to complete the development dashboard with its NCAR branding.
+Once the symlinks described above exist, the developer needs to execute the steps below to create the development dashboard with its NCAR branding.
 
 Start clean (caution, note the deletion here of files!!) by running the commands...
 
@@ -95,12 +75,36 @@ custom_css_files:
   - /branding/ncar-branding.css
 ```
 
+Restart your Per User Nginx webserver via the menu item in the OOD application. The development dashboard should now be available in the "My Sandbox Apps" with the NCAR branding onboard, but using the developer's static assets and dynamic views and layouts as written within the clone of the sage-ood-dashboard-branding repository. Modifications are made in place to these branding assets and files.
+
+When specifying branding images within an .erb file, use the public_url variable in the following way:
+
+src="<%= @user_configuration.public_url%>/branding/logo-ncar.png" 
+
 Important, the environment variables in the file .env.overload above override the equivalent settings in the file /etc/ood/config/nginx_stage.yml, which is a high level configuration file for configuring the Per User Nginx server. These environment variables are usable by any interactive application not just the dashboard. And, except for the OOD_DASHBOARD_LOGO, changes to the variables used in .env.overload have to be communicated specifically by value to the HSG admins as they are not captured in the sage-ood-dashboard-branding repository.
 
 Note, the above is an ever so slightly modified set of instructions for setting up a development dashboard from the original OOD instructions. See https://osc.github.io/ood-documentation/latest/tutorials/tutorials-dashboard-apps.html
 
-The development dashboard should now be available in the "My Sandbox Apps" with the NCAR branding onboard but using the developer's static assets and dynamic views and layouts within the clone of the sage-ood-dashboard-branding repository.
-
 ## Tagging for Release
 
 The sage-ood-dashboard-branding repository is consumed by Ansible when OOD is installed both on the prototype and production VMs. The Ansible task clones the sage-ood-dashboard-branding repository on the target VM and checks out the appropriate commit by a configured tag. The tag format has a prefix of the corresponding production release tag of the ondemand installation and is completed by a version stamp of the branding (ex. v4.0.8_1.0.0). When ready to release updated branding, tag sage-ood-dashboard-branding accordingly with a new tag in this format.
+
+## Background and Notes Regarding Dashboard Branding
+
+There are two "classes" of files involved in the NCAR branding: static assets and dynamic Ruby templates. While the Ruby templates reference the static assets, the two classes of files are handled and configured very differently. 
+
+Static assets (css, images) are accessible from the Apache public assets folder: /var/www/ood/public by default. While the public subdirectory is configurable, the Apache root /var/www/ood is not. Static assets are served relative to the Apache root regardless of whether the dashboard is the system dashboard or a development dashboard within a developer's "sandbox". The Apache root is fixed at install. The development dashboard may use different static assets but they still are expressed relative to the Apache root.
+
+Customized views and layouts in the form of dynamic Ruby templates, like our NCAR header and footer, live under the top level OOD configuration directory /etc/ood/config, specifically here: /etc/ood/config/apps/dashboard. A development dashboard may use a different application configuration directory via environment variable configuration to identify where these customizations reside.
+
+We can, through configuration settings and environment variables, fully "insulate" dashboard development from the system dashboard. By setting the variable public_url (which is really a directory postfix to the Apache root /var/www/ood) to a subdirectory belonging to an individual developer, we can reference the developer's static assets and not the production static assets. This variable is used automatically by OOD to locate custom css files. We can use it when coding .erb files as well when we need to specify images (NCAR logos). For example within an .erb file specify: 
+
+src="<%= @user_configuration.public_url%>/branding/logo-ncar.png" 
+
+Note, however, such references using public_url remain relative to the Apache root.
+
+To develop customized views and layouts (the dynamic Ruby templates or .erb files), we can use the environmental variables OOD_LOAD_EXTERNAL_CONFIG and OOD_APP_CONFIG_ROOT to fully relocate the directory from which these files are read. Lastly, environmental variable OOD_CONFIG_D_DIRECTORY allows us to relocate the directory where top level yaml configuration files reside. Crucially, variable public_url is set in these files--typically however there is just one file called ondemand.yml 
+
+HSG Admins assist us setting up OOD for dashboard development (really for the development of any "sandbox" interactive application we want to play with). They install OOD with Ansible--a tool that provisions virtual machines based on a repository describing the installation's configuration. One of the tasks Ansible performs when installing the prototype instance of OOD is enabling "development mode" for specific users with unix accounts on the prototype machine. Development mode allows such users to deploy interactive applications beyond what is available with the system installation of OOD for the purposes of developing and testing them. These development versions of interactive applications are available in what is called the "sandbox". See the "My Sandbox Apps" menu entry to access them. For our purposes here, the dashboard itself is one of these interactive applications. Another Ansible task prepares developers so that they may update and test new NCAR branding onboard their development dashboards; specifically, it creates the filesystem structure (read, directories and symlinks) that match the value that the variable public_url will have for the developer.
+
+See https://osc.github.io/ood-documentation/latest/how-tos/app-development/enabling-development-mode.html
