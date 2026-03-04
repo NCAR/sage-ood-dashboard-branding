@@ -69,6 +69,8 @@ html, body {
   width: auto;
   max-width: 72px;
 }
-.bg-blue {
-    background-color: #00357a
+
+/* Override this instead of OOD_BRAND_BG_COLOR */
+.navbar-dark{
+    background-color: #00357a /* NCAR Koru blue navbar */
 }         
