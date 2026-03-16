@@ -49,8 +49,6 @@ In ~/ondemand/dev/dashboard, create file .env.overload with the following conten
 
 ```bash
 OOD_DASHBOARD_TITLE="NSF NCAR HPC OnDemand"
-OOD_BRAND_BG_COLOR="#00357a"
-OOD_NAVBAR_TYPE="dark"
 ```
 
 Run the commands...
