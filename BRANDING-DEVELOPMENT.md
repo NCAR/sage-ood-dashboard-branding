@@ -6,6 +6,26 @@ Follow the steps in the example below to create the development or "sandbox" das
 
 Make sure to login to the Prototype OOD VM to perform the steps below and not a login node, for instance. Even though both share the same home directory filesystem, the Ruby environment may be different between them. The Ruby environment of the Prototype OOD VM is required specifically for building the dashboard interactive app. The "Launch Shell" on the My Sandbox Apps page **should** open a browser terminal to the Prototype OOD VM.
 
+#### Go to the OOD VM command line
+
+In a browser, visit the deployed OOD site:
+
+  https://ondemand-dev.hpc.ucar.edu/pun/sys/dashboard
+
+From menu bar, select 
+
+Develop > My Sandbox Apps
+  
+Click "Launch Shell"
+
+Your shell prompt should reference the OOD install location (not a login node). Otherwise the later ./bin/setup command will fail.
+
+It will look something like this:
+
+```bash
+[cgrant@ondemand-dev dev]$
+```
+
 Verify the following two links exist on the Prototype OOD VM. The HSG admins create this pair of symlinks for each developer:
 
   - The symlink /var/www/ood/apps/dev/jcunning/gateway pointing to ~jcunning/ondemand/dev
