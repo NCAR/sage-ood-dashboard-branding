@@ -78,7 +78,11 @@ cd ~/ondemand/ondemand.d
 cp /etc/ood/config/ondemand.d/*.* . # note, these are the installation's ondemand.d configuration files being copied!
 ```
 
-In directory ~/ondemand/ondemand.d, do two checks: 1. make sure setting public_url is absent from the configuration files or is set to "/public" which is the default; 2. make sure setting custom_css_files is present in one of the configuration files. Note, all yaml configuration files are read in this directory. 
+In directory ~/ondemand/ondemand.d, do two checks: 
+
+1. make sure setting public_url is absent from the configuration files or is set to "/public" which is the default;
+
+2. make sure setting custom_css_files is present in one of the configuration files (probably custom_branding.yml). Note, all yaml configuration files are read in this directory. 
 
 Then, create the file public_url.yml and add setting public_url to be the following:
 
@@ -92,6 +96,10 @@ custom_branding.yml
 custom_css_files:
   - /branding/ncar-branding.css
 ```
+
+See the OOD development dashboard here:  
+
+https://ondemand-dev.hpc.ucar.edu/pun/dev/dashboard
 
 Restart your Per User Nginx webserver via the menu item in the OOD application. The development dashboard should now be available in the "My Sandbox Apps" with the NCAR branding onboard, but using the developer's static assets and dynamic views and layouts as written within the clone of the sage-ood-dashboard-branding repository. Modifications are made in place to these branding assets and files.
 
