@@ -53,7 +53,7 @@ ln -s ../src/sage-ood-dashboard-branding/public/branding branding
 cd ~/ondemand/dev
 ln -s ../src/ondemand/apps/dashboard dashboard
 cd dashboard
-git checkout v4.0.8 # checkout the tag matching the installation of OOD on the VM!
+git checkout v4.2.2 # checkout the tag matching the installation of OOD on the VM!
 ./bin/setup # builds the dashboard app
 ```
 
